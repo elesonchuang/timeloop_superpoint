@@ -1,0 +1,90 @@
+architecture:
+  version: 0.3
+  local:
+  - name: System.ws.PE[0..15].PEInputBuffer
+    class: storage
+    subclass: smartbuffer_RF
+    attributes:
+      block-size: 8
+      datawidth: 16
+      memory_depth: 8192
+      memory_width: 128
+      meshX: 16
+      n_banks: 1
+      n_buffets: 1
+      n_rdwr_ports: 2
+      technology: 45nm
+      word-bits: 16
+  - name: System.ws.PE[0..15].PEWeightBuffer[0..3]
+    class: storage
+    subclass: smartbuffer_RF
+    attributes:
+      block-size: 8
+      datawidth: 16
+      memory_depth: 4096
+      memory_width: 16
+      meshX: 16
+      n_banks: 8
+      n_buffets: 1
+      n_rdwr_ports: 2
+      technology: 45nm
+      word-bits: 16
+  - name: System.ws.PE[0..15].PEAccuBuffer[0..3]
+    class: storage
+    subclass: smartbuffer_RF
+    attributes:
+      datawidth: 48
+      memory_depth: 128
+      memory_width: 16
+      meshX: 16
+      n_banks: 1
+      n_buffets: 1
+      n_rdwr_ports: 2
+      technology: 45nm
+      word-bits: 48
+  - name: System.ws.PE[0..15].PEWeightRegs[0..15]
+    class: storage
+    subclass: reg_storage
+    attributes:
+      cluster-size: 64
+      datawidth: 16
+      depth: 1
+      latency: 1ns
+      memory_depth: 1
+      meshX: 16
+      num-ports: 2
+      technology: 45nm
+      width: 16
+      word-bits: 16
+  - name: System.ws.PE[0..15].LMAC[0..15]
+    class: compute
+    subclass: lmac
+    attributes:
+      datawidth: 16
+      meshX: 16
+      technology: 45nm
+      word-bits: 16
+  - name: System.ws.GlobalBuffer
+    class: storage
+    subclass: smartbuffer_SRAM
+    attributes:
+      block-size: 32
+      datawidth: 16
+      memory_depth: 2048
+      memory_width: 512
+      meshX: 1
+      n_banks: 4
+      n_buffets: 1
+      n_rdwr_ports: 2
+      nports: 2
+      technology: 45nm
+      word-bits: 16
+  - name: System.DRAM
+    class: DRAM
+    attributes:
+      block-size: 8
+      datawidth: 16
+      technology: 45nm
+      type: LPDDR4
+      width: 128
+      word-bits: 16

@@ -1,0 +1,79 @@
+mapping:
+  - target: output_activation_reg
+    type: datatype
+    keep:
+      - Outputs
+    bypass:
+      - Weights
+      - Inputs
+  - target: weight_reg
+    type: datatype
+    keep:
+      - Weights
+    bypass:
+      - Inputs
+      - Outputs
+  - target: pe_spad
+    type: datatype
+    keep:
+      - Weights
+    bypass:
+      - Inputs
+      - Outputs
+  - target: DummyBuffer
+    type: datatype
+    keep:
+      []
+    bypass:
+      - Weights
+      - Inputs
+      - Outputs
+  - target: shared_glb
+    type: datatype
+    keep:
+      - Inputs
+    bypass:
+      - Weights
+      - Outputs
+  - target: DRAM
+    type: datatype
+    keep:
+      - Weights
+      - Inputs
+      - Outputs
+    bypass:
+      []
+  - target: output_activation_reg
+    type: temporal
+    factors: C1 M1 R1 S1 N1 P1 Q1
+    permutation: CMRSNPQ
+  - target: weight_reg
+    type: temporal
+    factors: C1 M1 R1 S1 N1 P3 Q10
+    permutation: QPCMRSN
+  - target: pe_spad
+    type: temporal
+    factors: C1 M1 R1 S1 N1 P4 Q1
+    permutation: PCMRSNQ
+  - target: DummyBuffer
+    type: spatial
+    factors: C1 M4 R3 S1 N1 P1 Q1
+    permutation: RMCSNPQ
+    split: 0
+  - target: DummyBuffer
+    type: temporal
+    factors: C1 M1 R1 S1 N1 P1 Q1
+    permutation: CMRSNPQ
+  - target: shared_glb
+    type: spatial
+    factors: C1 M4 R1 S3 N1 P1 Q1
+    permutation: SMCRNPQ
+    split: 2
+  - target: shared_glb
+    type: temporal
+    factors: C1 M1 R1 S1 N1 P5 Q8
+    permutation: QPCMRSN
+  - target: DRAM
+    type: temporal
+    factors: C1 M4 R1 S1 N1 P1 Q1
+    permutation: MCRSNPQ
