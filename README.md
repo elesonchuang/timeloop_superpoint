@@ -6,7 +6,7 @@ This folder contains some baseline implementations of an Eyeriss-like architectu
 
 In order to run the example designs, you need to be either inside a docker with installed tools
 (e.g., [infrastructure docker](https://github.com/Accelergy-Project/accelergy-timeloop-infrastructure)
-or manually install the Accelergy-Timeloop evaluation system.
+or manually install the Accelergy-Timeloop evaluation system. ([official install instruction](https://accelergy.mit.edu/infra_instructions.html))
 
 ### File Structure
 
